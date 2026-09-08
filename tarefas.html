@@ -1,11 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Portal do Estudante - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Estudante - Tarefas</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,17 +12,56 @@
     <h1>Portal do Estudante</h1>
     <nav>
         <ul>
-            <li><a href="index.html"></a></li>
-            <li><a href="disciplinas.html"></a></li>
-            <li><a href="tarefas.html"></a></li>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="disciplinas.html">Disciplinas</a></li>
+            <li><a href="tarefas.html">Tarefas</a></li>
         </ul>
     </nav>
 </header>
 
 <main>
     <section>
-        <h2>Quadro de tarefas</h2>
-        <p>Acompanhe suas atividades e prazos de entrega.</p>
+        <h2>Quadro de Tarefas</h2>
+        <p>Gerencie suas entregas, prazos e atividades pendentes do semestre.</p>
+    </section>
+
+    <section class="tarefas-container">
+        <table>
+            <thead>
+            <tr>
+                <th>Atividade / Trabalho</th>
+                <th>Disciplina</th>
+                <th>Data de Entrega</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Projeto Web Front-End (Protótipo)</td>
+                <td>Desenvolvimento Front-End</td>
+                <td>15/10/2026</td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Lista de Exercícios — Árvores e Grafos</td>
+                <td>Estrutura de Dados</td>
+                <td>20/10/2026</td>
+                <td>Em Andamento</td>
+            </tr>
+            <tr>
+                <td>Modelo Relacional do Banco de Dados</td>
+                <td>Banco de Dados</td>
+                <td>28/10/2026</td>
+                <td>Pendente</td>
+            </tr>
+            <tr>
+                <td>Documento de Requisitos (IEEE 830)</td>
+                <td>Engenharia de Software</td>
+                <td>05/11/2026</td>
+                <td>Concluído</td>
+            </tr>
+            </tbody>
+        </table>
     </section>
 </main>
 
