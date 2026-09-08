@@ -1,33 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal do Estudante - Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Portal do Estudante</h1>
-        <nav>
+<header>
+    <h1>Portal do Estudante</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="disciplinas.html">Disciplinas</a></li>
+            <li><a href="tarefas.html">Tarefas</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <h2>Painel Geral</h2>
+        <p>Acompanhe seu desempenho acadêmico e seus próximos prazos.</p>
+    </section>
+
+    <!-- Seção de Resumos e Estatísticas -->
+    <section class="dashboard-resumo">
+
+        <!-- Card 1: Média Geral -->
+        <article class="card">
+            <h3>Média Geral</h3>
+            <p class="valor-destaque">8.5</p>
+            <small>Calculada com base nas disciplinas do semestre</small>
+        </article>
+
+        <!-- Card 2: Próximas Tarefas e Filtro -->
+        <article class="card">
+            <h3>Próximas Tarefas</h3>
+
+            <div class="filtro-container">
+                <label for="filtro-prazo">Filtrar por período:</label>
+                <select id="filtro-prazo">
+                    <option value="hoje">Hoje</option>
+                    <option value="3dias">Próximos 3 dias</option>
+                    <option value="1semana" selected>Próxima 1 semana</option>
+                    <option value="1mes">Próximo 1 mês</option>
+                </select>
+            </div>
+
             <ul>
-                <li><a href="index.html"></a></li>
-                <li><a href="disciplinas.html"></a></li>
-                <li><a href="tarefas.html"></a></li>
+                <li><strong>Projeto Web Front-End</strong> - Entrega: Hoje</li>
+                <li><strong>Exercício de Estrutura de Dados</strong> - Entrega: Em 3 dias</li>
+                <li><strong>Relatório de Banco de Dados</strong> - Entrega: Em 5 dias</li>
             </ul>
-        </nav>
-    </header>
+        </article>
 
-    <main>
-        <section>
-            <h2>Bem-vindo ao seu Portal</h2>
-            <p>Acompanhe suas matérias, notas e prazos em um só lugar!</p>
-        </section>
-    </main>
+    </section>
+</main>
 
-    <script src="js/script.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
