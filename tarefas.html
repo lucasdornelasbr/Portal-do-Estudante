@@ -10,15 +10,19 @@
 
 <header>
     <div class="brand-container">
-        <h1 class="brand-title">Embarque Digital<span class="arrow">▾</span></h1>
+        <!-- O JS atualizará o texto do título dinamicamente -->
+        <h1 class="brand-title">
+            <span id="nome-modulo-ativo">Portal do Estudante</span>
+            <span class="arrow">▾</span>
+        </h1>
 
         <div class="brand-dropdown">
             <a href="index.html" class="dropdown-item" data-set-theme="ficr">
-                <strong>Portal do Estudante (FICR)</strong>
+                <strong>Portal do Estudante</strong>
                 <small>Resumo, Disciplinas e Tarefas</small>
             </a>
             <a href="index.html" class="dropdown-item" data-set-theme="porto-digital">
-                <strong>Embarque Digital / Porto Digital</strong>
+                <strong>Embarque Digital</strong>
                 <small>Projetos e Modos de Trabalho</small>
             </a>
             <a href="cursos.html" class="dropdown-item" data-set-theme="cursos">
@@ -32,11 +36,10 @@
         </div>
     </div>
 
+    <!-- O JS atualizará os links deste menu dinamicamente -->
     <nav>
-        <ul>
-            <li><a href="index.html">Resumo</a></li>
-            <li><a href="disciplinas.html">Disciplinas</a></li>
-            <li><a href="tarefas.html">Tarefas</a></li>
+        <ul id="menu-navegacao-dinamico">
+            <!-- Gerado via JavaScript -->
         </ul>
     </nav>
 </header>
