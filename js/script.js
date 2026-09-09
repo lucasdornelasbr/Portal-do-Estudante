@@ -132,3 +132,25 @@ if (formTarefa) {
 }
 
 renderizarTarefas();
+function renderizarResumoTarefas() {
+    const conteinerResumo = document.getElementById('lista-proximas-tarefas');
+    if (!conteinerResumo) return;
+
+    const tarefas = JSON.parse(localStorage.getItem('tarefas-portal')) || [];
+    conteinerResumo.innerHTML = '';
+
+    if (tarefas.length === 0) {
+        conteinerResumo.innerHTML = '<li>Nenhuma tarefa pendente cadastrada.</li>';
+        return;
+    }
+
+    // Exibe até as 5 tarefas mais recentes no resumo
+    tarefas.slice(-5).forEach(tarefa => {
+        const item = document.createElement('li');
+        item.innerHTML = `<strong>${tarefa.nome}</strong> (${tarefa.disciplina}) — <small>Data: ${tarefa.data}</small>`;
+        conteinerResumo.appendChild(item);
+    });
+}
+
+// Executa na inicialização
+renderizarResumoTarefas();
