@@ -299,3 +299,89 @@ if (formVaga) {
 }
 
 renderizarVagas();
+
+// ==========================================================================
+// GESTÃO DE DISCIPLINAS E FREQUÊNCIA (SOMA N1 + N2 + N3)
+// ==========================================================================
+const formDisciplina = document.getElementById('form-disciplina');
+const containerDisciplinas = document.getElementById('container-disciplinas');
+
+let disciplinas = JSON.parse(localStorage.getItem('disciplinas-portal')) || [];
+
+function renderizarDisciplinas() {
+    if (!containerDisciplinas) return;
+
+    containerDisciplinas.innerHTML = '';
+
+    if (disciplinas.length === 0) {
+        containerDisciplinas.innerHTML = '<p class="text-muted">Nenhuma disciplina cadastrada para este semestre.</p>';
+        return;
+    }
+
+    disciplinas.forEach(disc => {
+        const card = document.createElement('article');
+        card.className = 'card';
+
+        const n1 = parseFloat(disc.nota1);
+        const n2 = parseFloat(disc.nota2);
+        const n3 = parseFloat(disc.nota3);
+
+        // Calcula a soma apenas dos valores numéricos preenchidos
+        const somaNotas = (isNaN(n1) ? 0 : n1) + (isNaN(n2) ? 0 : n2) + (isNaN(n3) ? 0 : n3);
+        const notaFinalText = somaNotas.toFixed(1);
+
+        let statusBadge = '<span class="badge badge-andamento">Em Andamento</span>';
+
+        if (somaNotas >= 7.0 && disc.faltas <= 15) {
+            statusBadge = '<span class="badge badge-concluido">Aprovado</span>';
+        } else if (disc.faltas > 15 || (!isNaN(n1) && !isNaN(n2) && !isNaN(n3) && somaNotas < 7.0)) {
+            statusBadge = '<span class="badge badge-pendente">Atenção / Risco</span>';
+        }
+
+        card.innerHTML = `
+            <h3>${disc.nome}</h3>
+            <p><strong>Professor:</strong> ${disc.professor}</p>
+            <p><strong>Dia:</strong> ${disc.dia}</p>
+            <hr style="margin: 0.75rem 0; border: 0; border-top: 1px solid var(--border-color);">
+            <p><strong>Provas:</strong> N1 (máx 2): ${isNaN(n1) ? '-' : n1} | N2 (máx 3): ${isNaN(n2) ? '-' : n2} | N3 (máx 5): ${isNaN(n3) ? '-' : n3}</p>
+            <p><strong>Pontuação Acumulada:</strong> <strong>${notaFinalText} / 10.0</strong></p>
+            <p><strong>Faltas:</strong> ${disc.faltas}</p>
+            <div style="margin-top: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+                ${statusBadge}
+                <button onclick="removerDisciplina(${disc.id})" style="background: none; border: none; color: #e11d48; cursor: pointer; font-size: 0.85rem;">Excluir</button>
+            </div>
+        `;
+
+        containerDisciplinas.appendChild(card);
+    });
+}
+
+function removerDisciplina(id) {
+    disciplinas = disciplinas.filter(d => d.id !== id);
+    localStorage.setItem('disciplinas-portal', JSON.stringify(disciplinas));
+    renderizarDisciplinas();
+}
+
+if (formDisciplina) {
+    formDisciplina.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const novaDisciplina = {
+            id: Date.now(),
+            nome: document.getElementById('nome-disciplina').value,
+            professor: document.getElementById('prof-disciplina').value,
+            dia: document.getElementById('dia-disciplina').value,
+            nota1: document.getElementById('nota1-disciplina').value,
+            nota2: document.getElementById('nota2-disciplina').value,
+            nota3: document.getElementById('nota3-disciplina').value,
+            faltas: document.getElementById('faltas-disciplina').value || 0
+        };
+
+        disciplinas.push(novaDisciplina);
+        localStorage.setItem('disciplinas-portal', JSON.stringify(disciplinas));
+        renderizarDisciplinas();
+        formDisciplina.reset();
+    });
+}
+
+renderizarDisciplinas();

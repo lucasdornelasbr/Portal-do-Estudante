@@ -46,45 +46,41 @@
 
 <main>
     <section>
-        <h2>Minhas Disciplinas — Semestre Atual</h2>
-        <p>Matérias matriculadas no semestre 2026.1.</p>
+        <h2>Minhas Disciplinas</h2>
+        <p>Gerencie as matérias do semestre, horários, notas e controle de frequência.</p>
+    </section>
 
-        <table>
-            <thead>
-            <tr>
-                <th>Disciplina</th>
-                <th>Professor(a)</th>
-                <th>Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Introdução a Banco de Dados</td>
-                <td>Fred Lucena</td>
-                <td>Em Andamento</td>
-            </tr>
-            <tr>
-                <td>Linguagem de Marcação e Formatação</td>
-                <td>David Barreto</td>
-                <td>Em Andamento</td>
-            </tr>
-            <tr>
-                <td>Lógica Matemática e Algoritmo</td>
-                <td>Jonatas da Silva</td>
-                <td>Em Andamento</td>
-            </tr>
-            <tr>
-                <td>Residência Tecnológica I</td>
-                <td>Jonatas da Silva</td>
-                <td>Em Andamento</td>
-            </tr>
-            <tr>
-                <td>Relação: Princípios e Valores</td>
-                <td>Sandra Helena</td>
-                <td>Em Andamento</td>
-            </tr>
-            </tbody>
-        </table>
+    <!-- Formulário de Cadastro -->
+    <section class="card">
+        <h3>Cadastrar Nova Disciplina</h3>
+        <form id="form-disciplina">
+            <input type="text" id="nome-disciplina" placeholder="Nome da Disciplina (ex: Estrutura de Dados)" required>
+            <input type="text" id="prof-disciplina" placeholder="Nome do Professor" required>
+
+            <select id="dia-disciplina" required>
+                <option value="">Selecione o Dia da Semana</option>
+                <option value="Segunda-feira">Segunda-feira</option>
+                <option value="Terça-feira">Terça-feira</option>
+                <option value="Quarta-feira">Quarta-feira</option>
+                <option value="Quinta-feira">Quinta-feira</option>
+                <option value="Sexta-feira">Sexta-feira</option>
+                <option value="Sábado">Sábado</option>
+            </select>
+
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <input type="number" id="nota1-disciplina" placeholder="N1 (0 a 2)" step="0.1" min="0" max="2">
+                <input type="number" id="nota2-disciplina" placeholder="N2 (0 a 3)" step="0.1" min="0" max="3">
+                <input type="number" id="nota3-disciplina" placeholder="N3 (0 a 5)" step="0.1" min="0" max="5">
+                <input type="number" id="faltas-disciplina" placeholder="Faltas acumuladas" min="0" value="0">
+            </div>
+
+            <button type="submit">Cadastrar Disciplina</button>
+        </form>
+    </section>
+
+    <!-- Container de Cards das Disciplinas -->
+    <section class="dashboard-resumo" id="container-disciplinas">
+        <!-- Renderizado dinamicamente via JS -->
     </section>
 </main>
 
