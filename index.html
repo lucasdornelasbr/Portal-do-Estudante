@@ -45,39 +45,40 @@
 </header>
 
 <main>
-    <section>
-        <h2>Painel Geral</h2>
-        <p>Acompanhe seu desempenho acadêmico e seus próximos prazos.</p>
-    </section>
+    <!-- CONTEÚDO DO PORTAL DO ESTUDANTE -->
+    <div id="conteudo-portal">
+        <section>
+            <h2>Painel Geral</h2>
+            <p>Acompanhe seu desempenho acadêmico e seus próximos prazos.</p>
+        </section>
 
-    <!-- Seção de Resumos e Estatísticas -->
-    <section class="dashboard-resumo">
+        <!-- Seção de Resumos e Estatísticas -->
+        <section class="dashboard-resumo">
+            <!-- Card 1: Média Geral -->
+            <article class="card">
+                <h3>Média Geral</h3>
+                <p class="valor-destaque">8.5</p>
+                <small>Calculada com base nas disciplinas do semestre</small>
+            </article>
 
-        <!-- Card 1: Média Geral -->
-        <article class="card">
-            <h3>Média Geral</h3>
-            <p class="valor-destaque">8.5</p>
-            <small>Calculada com base nas disciplinas do semestre</small>
-        </article>
-
-        <!-- Card 2: Próximas Tarefas e Filtro -->
-        <article class="card">
-            <h3>Próximas Tarefas</h3>
-
+            <!-- Card 2: Próximas Tarefas -->
             <article class="card">
                 <h3>Próximas Tarefas</h3>
                 <ul id="lista-proximas-tarefas">
                     <!-- Preenchido via JS com os dados do localStorage -->
                 </ul>
             </article>
+        </section>
+    </div>
 
-            <ul>
-                <li><strong>Projeto Web Front-End</strong> - Entrega: Hoje</li>
-                <li><strong>Exercício de Estrutura de Dados</strong> - Entrega: Em 3 dias</li>
-                <li><strong>Relatório de Banco de Dados</strong> - Entrega: Em 5 dias</li>
-            </ul>
-        </article>
-
+    <!-- CONTEÚDO DO EMBARQUE DIGITAL (EM DESENVOLVIMENTO) -->
+    <section id="conteudo-embarque" class="card" style="display: none; text-align: center; padding: 3rem 1.5rem; margin-top: 1rem;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
+        <h2>Módulo Embarque Digital</h2>
+        <p style="color: var(--text-muted); max-width: 500px; margin: 0.5rem auto 1.5rem; line-height: 1.5;">
+            Este espaço está sendo estruturado para integrar o acompanhamento de residência, projetos e mentorias do programa. Em breve mais novidades!
+        </p>
+        <span class="badge badge-andamento">Em Desenvolvimento</span>
     </section>
 </main>
 

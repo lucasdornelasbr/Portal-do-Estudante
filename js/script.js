@@ -38,20 +38,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function atualizarInterfaceModulo(chaveModulo) {
         const modulo = configuracaoModulos[chaveModulo] || configuracaoModulos['ficr'];
+        const blocoportal = document.getElementById('conteudo-portal');
+        const blocoEmbarque = document.getElementById('conteudo-embarque');
 
-        // 1. Atualiza o tema no elemento HTML
+        // 1. Alterna o tema no elemento HTML
         if (chaveModulo === 'ficr') {
             htmlElement.removeAttribute('data-theme');
         } else {
             htmlElement.setAttribute('data-theme', chaveModulo);
         }
 
-        // 2. Atualiza o título do cabeçalho
-        if (elementoNomeModulo) {
-            elementoNomeModulo.textContent = modulo.nome;
+        // 2. Controla o que aparece na tela inicial
+        if (blocoportal && blocoEmbarque) {
+            if (chaveModulo === 'porto-digital') {
+                blocoportal.style.display = 'none';
+                blocoEmbarque.style.display = 'block';
+            } else {
+                blocoportal.style.display = 'block';
+                blocoEmbarque.style.display = 'none';
+            }
         }
 
-        // 3. Atualiza os links do menu do canto superior direito
+        // 3. Atualiza o título e o menu
+        if (elementoNomeModulo) elementoNomeModulo.textContent = modulo.nome;
         if (menuNavegacao) {
             menuNavegacao.innerHTML = '';
             modulo.links.forEach(link => {
