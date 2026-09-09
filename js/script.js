@@ -1,18 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const btnTema = document.getElementById('btn-tema');
+    const btnPorto = document.getElementById('btn-tema-porto');
     const htmlElement = document.documentElement;
 
-    // Recupera o tema salvo no localStorage
+    // Aplica o tema salvo no navegador
     const temaSalvo = localStorage.getItem('tema-portal');
-    if (temaSalvo) {
-        htmlElement.setAttribute('data-theme', temaSalvo);
+    if (temaSalvo === 'porto-digital') {
+        htmlElement.setAttribute('data-theme', 'porto-digital');
     }
 
-    // Alterna entre FICR (padrão) e Porto Digital
-    if (btnTema) {
-        btnTema.addEventListener('click', () => {
-            const temaAtual = htmlElement.getAttribute('data-theme');
+    // Alterna o tema ao clicar no item Porto Digital dentro do menu dropdown
+    if (btnPorto) {
+        btnPorto.addEventListener('click', (e) => {
+            e.preventDefault(); // Evita o salto da página pelo link '#'
 
+            const temaAtual = htmlElement.getAttribute('data-theme');
             if (temaAtual === 'porto-digital') {
                 htmlElement.removeAttribute('data-theme');
                 localStorage.setItem('tema-portal', 'ficr');
