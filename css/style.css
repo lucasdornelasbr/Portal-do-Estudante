@@ -230,3 +230,92 @@ button[type="submit"]:active {
     background-color: rgba(0, 0, 0, 0.02);
     color: var(--text-muted);
 }
+/* ==========================================================================
+   7. NAVEGAÇÃO MULTI-SISTEMA (BRAND DROPDOWN "BOLHA")
+   ========================================================================== */
+.brand-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+}
+
+.brand-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+}
+
+.brand-title .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.brand-container:hover .arrow {
+    transform: rotate(180deg);
+}
+
+/* Pop-up em formato de bolha flutuante */
+.brand-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 280px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 0.6rem;
+    z-index: 1000;
+    animation: popupFade 0.2s ease-in-out;
+}
+
+.brand-container:hover .brand-dropdown {
+    display: block;
+}
+
+.dropdown-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--primary-color);
+}
+
+.dropdown-item.active {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.dropdown-item.active small {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.dropdown-item small {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+@keyframes popupFade {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
