@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Estudante - Oportunidades</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Portal do Estudante</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="disciplinas.html">Disciplinas</a></li>
+            <li><a href="tarefas.html">Tarefas</a></li>
+            <li><a href="cursos.html">Cursos & Certificados</a></li>
+            <li><a href="oportunidades.html">Oportunidades</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <h2>Mapeamento de Oportunidades</h2>
+        <p>Acompanhe vagas de estágio e posições Jr. no Porto Digital e empresas parceiras.</p>
+    </section>
+
+    <!-- Formulário de Nova Vaga -->
+    <section class="card">
+        <h3>Cadastrar Vaga de Interesse</h3>
+        <form id="form-vaga">
+            <input type="text" placeholder="Cargo / Título da Vaga" required>
+            <input type="text" placeholder="Empresa" required>
+            <input type="url" placeholder="Link da Vaga (URL)" required>
+            <select id="status-vaga">
+                <option value="pesquisando">Pesquisando / Salva</option>
+                <option value="inscrito">Candidatura Enviada</option>
+                <option value="entrevista">Em Processo Seletivo</option>
+                <option value="banco">Banco de Talentos</option>
+            </select>
+            <button type="submit">Cadastrar Vaga</button>
+        </form>
+    </section>
+
+    <!-- Tabela de Acompanhamento -->
+    <section>
+        <table>
+            <thead>
+            <tr>
+                <th>Cargo</th>
+                <th>Empresa</th>
+                <th>Status</th>
+                <th>Link</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Estágio em Desenvolvimento Front-End</td>
+                <td>Empresa do Porto Digital</td>
+                <td>Candidatura Enviada</td>
+                <td><a href="#" target="_blank">Ver Vaga</a></td>
+            </tr>
+            <tr>
+                <td>Desenvolvedor Jr. (React)</td>
+                <td>Tech Partner</td>
+                <td>Pesquisando / Salva</td>
+                <td><a href="#" target="_blank">Ver Vaga</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>

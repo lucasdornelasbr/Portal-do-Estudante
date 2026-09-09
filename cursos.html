@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Estudante - Cursos & Certificados</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Portal do Estudante</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="disciplinas.html">Disciplinas</a></li>
+            <li><a href="tarefas.html">Tarefas</a></li>
+            <li><a href="cursos.html">Cursos & Certificados</a></li>
+            <li><a href="oportunidades.html">Oportunidades</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <h2>Cursos e Certificações</h2>
+        <p>Gerencie seus cursos concluídos, em andamento e guarde seus comprovantes.</p>
+    </section>
+
+    <!-- Formulário de Cadastro de Novo Curso -->
+    <section class="card">
+        <h3>Adicionar Curso / Certificado</h3>
+        <form id="form-curso">
+            <input type="text" placeholder="Nome do Curso" required>
+            <input type="text" placeholder="Plataforma / Instituição (ex: Alura, Udemy)" required>
+            <input type="number" placeholder="Carga Horária (horas)" required>
+
+            <select id="status-curso">
+                <option value="concluido">Concluído</option>
+                <option value="em-andamento">Em Andamento</option>
+                <option value="pretendido">Pretendo Fazer</option>
+            </select>
+
+            <label for="upload-certificado">Anexar Certificado (PDF/Imagem):</label>
+            <input type="file" id="upload-certificado" accept="image/*,.pdf">
+
+            <button type="submit">Salvar Curso</button>
+        </form>
+    </section>
+
+    <!-- Grade de Certificados Concluídos -->
+    <section class="dashboard-resumo">
+        <article class="card">
+            <h3>Front-End Moderno</h3>
+            <p><strong>Plataforma:</strong> Origamid (60h)</p>
+            <p><strong>Status:</strong> Concluído</p>
+            <div class="miniantiura-certificado">
+                <small>Pré-visualização do Certificado (PDF/IMG)</small>
+            </div>
+        </article>
+
+        <article class="card">
+            <h3>Git e GitHub do Zero ao Avançado</h3>
+            <p><strong>Plataforma:</strong> Udemy (20h)</p>
+            <p><strong>Status:</strong> Em Andamento</p>
+        </article>
+    </section>
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>
