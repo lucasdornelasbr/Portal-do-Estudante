@@ -319,3 +319,26 @@ button[type="submit"]:active {
         transform: translateY(0);
     }
 }
+/* Tema Cursos & Certificados */
+[data-theme="cursos"] {
+    --primary-color: #0d9488;
+    --primary-hover: #0f766e;
+    --bg-color: #f0fdf4;
+    --card-bg: #ffffff;
+    --text-color: #0f172a;
+    --text-muted: #475569;
+    --border-color: #cbd5e1;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Tema Oportunidades */
+[data-theme="oportunidades"] {
+    --primary-color: #d97706;
+    --primary-hover: #b45309;
+    --bg-color: #fffbe0;
+    --card-bg: #ffffff;
+    --text-color: #1c1917;
+    --text-muted: #57534e;
+    --border-color: #e7e5e4;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
