@@ -154,3 +154,148 @@ function renderizarResumoTarefas() {
 
 // Executa na inicialização
 renderizarResumoTarefas();
+
+// ==========================================================================
+// GESTÃO DE CURSOS E CERTIFICADOS
+// ==========================================================================
+const formCurso = document.getElementById('form-curso');
+const containerCursos = document.getElementById('container-cursos');
+
+let cursos = JSON.parse(localStorage.getItem('cursos-portal')) || [];
+
+function renderizarCursos() {
+    if (!containerCursos) return;
+
+    containerCursos.innerHTML = '';
+
+    if (cursos.length === 0) {
+        containerCursos.innerHTML = '<p class="text-muted">Nenhum curso cadastrado até o momento.</p>';
+        return;
+    }
+
+    cursos.forEach(curso => {
+        const card = document.createElement('article');
+        card.className = 'card';
+
+        let previewHTML = '';
+        if (curso.arquivoData) {
+            if (curso.arquivoTipo.startsWith('image/')) {
+                previewHTML = `<div class="miniantiura-certificado"><img src="${curso.arquivoData}" alt="Certificado" style="max-width: 100%; border-radius: 4px;"></div>`;
+            } else {
+                previewHTML = `<div class="miniantiura-certificado"><small>📄 Comprovante anexado (${curso.arquivoNome})</small></div>`;
+            }
+        }
+
+        card.innerHTML = `
+            <h3>${curso.nome}</h3>
+            <p><strong>Plataforma:</strong> ${curso.plataforma} (${curso.cargaHoraria}h)</p>
+            <p><strong>Status:</strong> <span class="badge badge-${curso.status.toLowerCase().replace(' ', '-')}">${curso.status}</span></p>
+            ${previewHTML}
+            <button onclick="removerCurso(${curso.id})" style="margin-top: 1rem; background: none; border: none; color: #e11d48; cursor: pointer; font-size: 0.85rem;">Excluir Curso</button>
+        `;
+
+        containerCursos.appendChild(card);
+    });
+}
+
+function removerCurso(id) {
+    cursos = cursos.filter(c => c.id !== id);
+    localStorage.setItem('cursos-portal', JSON.stringify(cursos));
+    renderizarCursos();
+}
+
+if (formCurso) {
+    formCurso.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const fileInput = document.getElementById('upload-certificado');
+        const file = fileInput.files[0];
+
+        const salvarObjetoCurso = (arquivoData = null, arquivoTipo = null, arquivoNome = null) => {
+            const novoCurso = {
+                id: Date.now(),
+                nome: document.getElementById('nome-curso').value,
+                plataforma: document.getElementById('plataforma-curso').value,
+                cargaHoraria: document.getElementById('carga-horaria').value,
+                status: document.getElementById('status-curso').value,
+                arquivoData,
+                arquivoTipo,
+                arquivoNome
+            };
+
+            cursos.push(novoCurso);
+            localStorage.setItem('cursos-portal', JSON.stringify(cursos));
+            renderizarCursos();
+            formCurso.reset();
+        };
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (evt) {
+                salvarObjetoCurso(evt.target.result, file.type, file.name);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            salvarObjetoCurso();
+        }
+    });
+}
+
+renderizarCursos();
+// ==========================================================================
+// GESTÃO DE OPORTUNIDADES E VAGAS
+// ==========================================================================
+const formVaga = document.getElementById('form-vaga');
+const tabelaVagasBody = document.getElementById('tabela-vagas-body');
+
+let vagas = JSON.parse(localStorage.getItem('vagas-portal')) || [];
+
+function renderizarVagas() {
+    if (!tabelaVagasBody) return;
+
+    tabelaVagasBody.innerHTML = '';
+
+    if (vagas.length === 0) {
+        tabelaVagasBody.innerHTML = '<tr><td colspan="5" style="text-align:center; color: var(--text-muted);">Nenhuma vaga mapeada até o momento.</td></tr>';
+        return;
+    }
+
+    vagas.forEach(vaga => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><strong>${vaga.cargo}</strong></td>
+            <td>${vaga.empresa}</td>
+            <td><span class="badge badge-${vaga.status.toLowerCase()}">${vaga.status}</span></td>
+            <td><a href="${vaga.link}" target="_blank" rel="noopener noreferrer" style="color: var(--primary-color); font-weight: 600;">Ver Vaga 🔗</a></td>
+            <td><button onclick="removerVaga(${vaga.id})" style="background: none; border: none; color: #e11d48; cursor: pointer; font-size: 0.85rem;">Excluir</button></td>
+        `;
+        tabelaVagasBody.appendChild(tr);
+    });
+}
+
+function removerVaga(id) {
+    vagas = vagas.filter(v => v.id !== id);
+    localStorage.setItem('vagas-portal', JSON.stringify(vagas));
+    renderizarVagas();
+}
+
+if (formVaga) {
+    formVaga.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const novaVaga = {
+            id: Date.now(),
+            cargo: document.getElementById('cargo-vaga').value,
+            empresa: document.getElementById('empresa-vaga').value,
+            link: document.getElementById('link-vaga').value,
+            status: document.getElementById('status-vaga').value
+        };
+
+        vagas.push(novaVaga);
+        localStorage.setItem('vagas-portal', JSON.stringify(vagas));
+        renderizarVagas();
+        formVaga.reset();
+    });
+}
+
+renderizarVagas();

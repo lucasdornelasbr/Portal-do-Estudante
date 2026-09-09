@@ -54,21 +54,21 @@
     <section class="card">
         <h3>Cadastrar Vaga de Interesse</h3>
         <form id="form-vaga">
-            <input type="text" placeholder="Cargo / Título da Vaga" required>
-            <input type="text" placeholder="Empresa" required>
-            <input type="url" placeholder="Link da Vaga (URL)" required>
+            <input type="text" id="cargo-vaga" placeholder="Cargo / Título da Vaga" required>
+            <input type="text" id="empresa-vaga" placeholder="Empresa" required>
+            <input type="url" id="link-vaga" placeholder="Link da Vaga (https://...)" required>
             <select id="status-vaga">
-                <option value="pesquisando">Pesquisando / Salva</option>
-                <option value="inscrito">Candidatura Enviada</option>
-                <option value="entrevista">Em Processo Seletivo</option>
-                <option value="banco">Banco de Talentos</option>
+                <option value="Pesquisando">Pesquisando / Salva</option>
+                <option value="Inscrito">Candidatura Enviada</option>
+                <option value="Entrevista">Em Processo Seletivo</option>
+                <option value="Banco">Banco de Talentos</option>
             </select>
             <button type="submit">Cadastrar Vaga</button>
         </form>
     </section>
 
     <!-- Tabela de Acompanhamento -->
-    <section>
+    <section class="tarefas-container">
         <table>
             <thead>
             <tr>
@@ -76,21 +76,11 @@
                 <th>Empresa</th>
                 <th>Status</th>
                 <th>Link</th>
+                <th>Ações</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>Estágio em Desenvolvimento Front-End</td>
-                <td>Empresa do Porto Digital</td>
-                <td>Candidatura Enviada</td>
-                <td><a href="#" target="_blank">Ver Vaga</a></td>
-            </tr>
-            <tr>
-                <td>Desenvolvedor Jr. (React)</td>
-                <td>Tech Partner</td>
-                <td>Pesquisando / Salva</td>
-                <td><a href="#" target="_blank">Ver Vaga</a></td>
-            </tr>
+            <tbody id="tabela-vagas-body">
+            <!-- Renderizado dinamicamente via JS -->
             </tbody>
         </table>
     </section>
