@@ -79,3 +79,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+// ==========================================================================
+// GESTÃO DE TAREFAS (PERSISTÊNCIA VIA LOCALSTORAGE)
+// ==========================================================================
+const formTarefa = document.getElementById('form-tarefa');
+const tabelaTarefasBody = document.getElementById('tabela-tarefas-body');
+
+let tarefas = JSON.parse(localStorage.getItem('tarefas-portal')) || [
+    { id: 1, nome: 'Projeto Web Front-End', disciplina: 'Desenvolvimento Front-End', data: '2026-10-15', status: 'Pendente' }
+];
+
+function renderizarTarefas() {
+    if (!tabelaTarefasBody) return;
+
+    tabelaTarefasBody.innerHTML = '';
+    tarefas.forEach(tarefa => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${tarefa.nome}</td>
+            <td>${tarefa.disciplina}</td>
+            <td>${tarefa.data}</td>
+            <td><span class="badge badge-${tarefa.status.toLowerCase().replace(' ', '-')}">${tarefa.status}</span></td>
+            <td><button onclick="removerTarefa(${tarefa.id})" style="background:none; border:none; color:red; cursor:pointer;">Excluir</button></td>
+        `;
+        tabelaTarefasBody.appendChild(tr);
+    });
+}
+
+function removerTarefa(id) {
+    tarefas = tarefas.filter(t => t.id !== id);
+    localStorage.setItem('tarefas-portal', JSON.stringify(tarefas));
+    renderizarTarefas();
+}
+
+if (formTarefa) {
+    formTarefa.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const novaTarefa = {
+            id: Date.now(),
+            nome: document.getElementById('nome-tarefa').value,
+            disciplina: document.getElementById('disciplina-tarefa').value,
+            data: document.getElementById('data-tarefa').value,
+            status: document.getElementById('status-tarefa').value
+        };
+
+        tarefas.push(novaTarefa);
+        localStorage.setItem('tarefas-portal', JSON.stringify(tarefas));
+        renderizarTarefas();
+        formTarefa.reset();
+    });
+}
+
+renderizarTarefas();
